@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  
+  <title><![CDATA[Slave Yourself]]></title>
+  <subtitle><![CDATA[The mind plays shameful tricks，when we want something too much.]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="blog.bruceleo1969.xyz//"/>
+  <updated>2015-08-05T07:00:00.000Z</updated>
+  <id>blog.bruceleo1969.xyz//</id>
+  
+  <author>
+    <name><![CDATA[General in Wild]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[MySQL on Yosemite With mycli]]></title>
+    <link href="blog.bruceleo1969.xyz/2015/8/5/db/"/>
+    <id>blog.bruceleo1969.xyz/2015/8/5/db/</id>
+    <published>2015-08-05T05:40:35.000Z</published>
+    <updated>2015-08-05T07:00:00.000Z</updated>
+    <content type="html"><![CDATA[<p>mycli 出现以前 ，我一直觉得 ：</p>
+<blockquote>
+<p>MySQL CLI is for animal</p>
+</blockquote>
+<p>是的 ，那玩意太不智能了 ，没有高亮不说 ， 连最基本的自动补全也是能省就省 ，真的大丈夫 ？！</p>
+<p>这也成了我抗拒学数据库的最大原因 （ 逃 …</p>
+<a id="more"></a>
+<h2 id="mycli">mycli</h2><p>前几天从微博上发现了<a href="http://mycli.net/" target="_blank" rel="external">mycli</a>这神器 ，一时感觉整个世界突然之前竟然充满了善意 。支持自动保全，mycli 支持语法高亮 ，还智能识别语句末尾的符号等等 ，极大的便利了 MySQL CLI 的操作 。当晚 在虚拟机的 Ubuntu Server 上试了一下 ，非常满意 ，恰逢手抖弄没了 mac 上的一堆数据 （<strong><code>User/</code> 下的数据都没了 ，新建用户不知道何故卡顿非常严重 ，重建索引并没有用</strong>），加上最近又忙又累无心细究原因以及解决方法 ，直接操起 U 盘将系统重新安装了一遍 ，一堆环境要重新部署 ，顺手就给本地也装了个 MySQL 以方便练习 ，没想到的是 ，装个数据库过程也不太顺利 。<br><img src="http://7xku3r.com1.z0.glb.clouddn.com/myclimain.gif" class="img-center"></p>
+<h2 id="MySQL">MySQL</h2><p><a href="ttps://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">官网</a> 下载好安装文件装上去过程是很常规的没什么好说 ，以我最近负无穷大的人品值都没有出问题 ，可见这是不可能出问题的步骤 &gt;_&lt; !</p>
+<p>装完第一件事当然是先给启动命令来个 alias ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql=<span class="string">'/usr/local/mysql/bin/mysql'</span></span><br></pre></td></tr></table></figure>
+<p>设备里启动 MySQL Server 之后发现 <code>root</code> 并无法登录 MySQL ，网上都说 <code>root</code> 初始是无密码 ，试验之后 ，得到的结果是 ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access denied <span class="keyword">for</span> user <span class="string">''</span>@<span class="string">'localhost'</span>to database</span><br></pre></td></tr></table></figure>
+<p>无密码可登录的是 <code>mysql</code> 用户 ，登录进去看不见 MySQL 数据库 ，也没有权限给 <code>root</code> 修改密码 ，还是用其他方法设置好 <code>root</code> 密码再说吧 。</p>
+<h3 id="root_口令非常规设置">root 口令非常规设置</h3><ul>
+<li>首先关闭 MySQL ；</li>
+<li>再以 safe 模式启动 MySQL ；</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysqld_safe --skip-grant-tables</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>以下是设定 root 口令操作 :</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root&#10;mysql&#62; use mysql&#10;mysql&#62; UPDATE user SET Password=PASSWORD(&#39;xxx&#39;) WHERE user=&#39;root&#39;;&#10;mysql&#62; flush privileges;&#10;mysql&#62;\q</span><br></pre></td></tr></table></figure>
+<p>至此 ，root 用户已经设置完毕</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>即可成功登录 。</p>
+<p>重新设置 alias 以提高效率 ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql=<span class="string">'/usr/local/mysql/bin/mysql -u root -p'</span></span><br></pre></td></tr></table></figure>
+<p><del>接下来会有更多深入学习</del><br><img src="http://7xku3r.com1.z0.glb.clouddn.com/myclimycli.gif" class="img-center"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>mycli 出现以前 ，我一直觉得 ：</p>
+<blockquote>
+<p>MySQL CLI is for animal</p>
+</blockquote>
+<p>是的 ，那玩意太不智能了 ，没有高亮不说 ， 连最基本的自动补全也是能省就省 ，真的大丈夫 ？！</p>
+<p>这也成了我抗拒学数据库的最大原因 （ 逃 …</p>]]>
+    
+    </summary>
+    
+      <category term="MySQL" scheme="blog.bruceleo1969.xyz/tags/MySQL/"/>
+    
+      <category term="Yosemite" scheme="blog.bruceleo1969.xyz/tags/Yosemite/"/>
+    
+      <category term="mycli" scheme="blog.bruceleo1969.xyz/tags/mycli/"/>
+    
+      <category term="Database" scheme="blog.bruceleo1969.xyz/categories/Database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Sorrow]]></title>
+    <link href="blog.bruceleo1969.xyz/2015/8/1/81/"/>
+    <id>blog.bruceleo1969.xyz/2015/8/1/81/</id>
+    <published>2015-08-01T14:02:19.000Z</published>
+    <updated>2015-08-03T13:35:36.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7xku3r.com1.z0.glb.clouddn.com/sorrowsorrow-clipart-sorrow-md.png" class="img-topic"></p>
+<a id="more"></a>
+<h2 id="That_Sucks">That Sucks</h2><p><img src="/images/Snip20150801_1.png" alt=""></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7xku3r.com1.z0.glb.clouddn.com/sorrowsorrow-clipart-sorrow-md.png" class="img-topic" /></p>]]>
+    
+    </summary>
+    
+      <category term="something_bad" scheme="blog.bruceleo1969.xyz/tags/something-bad/"/>
+    
+      <category term="daily" scheme="blog.bruceleo1969.xyz/categories/daily/"/>
+    
+  </entry>
+  
+</feed>

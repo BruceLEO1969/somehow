@@ -1,0 +1,507 @@
+
+ <!DOCTYPE HTML>
+<html lang="UTF-8">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>MySQL on Yosemite With mycli | Slave Yourself</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="General in Wild">
+    
+
+    
+    <meta name="description" content="mycli 出现以前 ，我一直觉得 ：
+
+MySQL CLI is for animal
+
+是的 ，那玩意太不智能了 ，没有高亮不说 ， 连最基本的自动补全也是能省就省 ，真的大丈夫 ？！
+这也成了我抗拒学数据库的最大原因 （ 逃 …">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL on Yosemite With mycli">
+<meta property="og:url" content="blog.bruceleo1969.xyz/2015/8/5/db/index.html">
+<meta property="og:site_name" content="Slave Yourself">
+<meta property="og:description" content="mycli 出现以前 ，我一直觉得 ：
+
+MySQL CLI is for animal
+
+是的 ，那玩意太不智能了 ，没有高亮不说 ， 连最基本的自动补全也是能省就省 ，真的大丈夫 ？！
+这也成了我抗拒学数据库的最大原因 （ 逃 …">
+<meta property="og:image" content="http://7xku3r.com1.z0.glb.clouddn.com/myclimain.gif">
+<meta property="og:image" content="http://7xku3r.com1.z0.glb.clouddn.com/myclimycli.gif">
+<meta property="og:updated_time" content="2015-08-05T07:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL on Yosemite With mycli">
+<meta name="twitter:description" content="mycli 出现以前 ，我一直觉得 ：
+
+MySQL CLI is for animal
+
+是的 ，那玩意太不智能了 ，没有高亮不说 ， 连最基本的自动补全也是能省就省 ，真的大丈夫 ？！
+这也成了我抗拒学数据库的最大原因 （ 逃 …">
+<meta name="twitter:creator" content="@BruceLEO1969">
+<link rel="publisher" href="+BruceLEO1969/posts">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Slave Yourself" title="Slave Yourself"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Slave Yourself">Slave Yourself</a></h1>
+				<h2 class="blog-motto">The mind plays shameful tricks，when we want something too much.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="st-search-inpu" maxlength="20" placeholder="Search" />
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/8/5/db/" title="MySQL on Yosemite With mycli" itemprop="url">MySQL on Yosemite With mycli</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/+BruceLEO1969/posts?rel=author" title="General in Wild" target="_blank" itemprop="author">General in Wild</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-05T05:40:35.000Z" itemprop="datePublished"> Published 2015-08-05</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mycli"><span class="toc-number">1.</span> <span class="toc-text">mycli</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-number">2.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#root_口令非常规设置"><span class="toc-number">2.1.</span> <span class="toc-text">root 口令非常规设置</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>mycli 出现以前 ，我一直觉得 ：</p>
+<blockquote>
+<p>MySQL CLI is for animal</p>
+</blockquote>
+<p>是的 ，那玩意太不智能了 ，没有高亮不说 ， 连最基本的自动补全也是能省就省 ，真的大丈夫 ？！</p>
+<p>这也成了我抗拒学数据库的最大原因 （ 逃 …</p>
+<a id="more"></a>
+<h2 id="mycli">mycli</h2><p>前几天从微博上发现了<a href="http://mycli.net/" target="_blank" rel="external">mycli</a>这神器 ，一时感觉整个世界突然之前竟然充满了善意 。支持自动保全，mycli 支持语法高亮 ，还智能识别语句末尾的符号等等 ，极大的便利了 MySQL CLI 的操作 。当晚 在虚拟机的 Ubuntu Server 上试了一下 ，非常满意 ，恰逢手抖弄没了 mac 上的一堆数据 （<strong><code>User/</code> 下的数据都没了 ，新建用户不知道何故卡顿非常严重 ，重建索引并没有用</strong>），加上最近又忙又累无心细究原因以及解决方法 ，直接操起 U 盘将系统重新安装了一遍 ，一堆环境要重新部署 ，顺手就给本地也装了个 MySQL 以方便练习 ，没想到的是 ，装个数据库过程也不太顺利 。<br><img src="http://7xku3r.com1.z0.glb.clouddn.com/myclimain.gif" class="img-center"></p>
+<h2 id="MySQL">MySQL</h2><p><a href="ttps://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">官网</a> 下载好安装文件装上去过程是很常规的没什么好说 ，以我最近负无穷大的人品值都没有出问题 ，可见这是不可能出问题的步骤 &gt;_&lt; !</p>
+<p>装完第一件事当然是先给启动命令来个 alias ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql=<span class="string">'/usr/local/mysql/bin/mysql'</span></span><br></pre></td></tr></table></figure>
+<p>设备里启动 MySQL Server 之后发现 <code>root</code> 并无法登录 MySQL ，网上都说 <code>root</code> 初始是无密码 ，试验之后 ，得到的结果是 ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access denied <span class="keyword">for</span> user <span class="string">''</span>@<span class="string">'localhost'</span>to database</span><br></pre></td></tr></table></figure>
+<p>无密码可登录的是 <code>mysql</code> 用户 ，登录进去看不见 MySQL 数据库 ，也没有权限给 <code>root</code> 修改密码 ，还是用其他方法设置好 <code>root</code> 密码再说吧 。</p>
+<h3 id="root_口令非常规设置">root 口令非常规设置</h3><ul>
+<li>首先关闭 MySQL ；</li>
+<li>再以 safe 模式启动 MySQL ；</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysqld_safe --skip-grant-tables</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>以下是设定 root 口令操作 :</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root&#10;mysql&#62; use mysql&#10;mysql&#62; UPDATE user SET Password=PASSWORD(&#39;xxx&#39;) WHERE user=&#39;root&#39;;&#10;mysql&#62; flush privileges;&#10;mysql&#62;\q</span><br></pre></td></tr></table></figure>
+<p>至此 ，root 用户已经设置完毕</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>即可成功登录 。</p>
+<p>重新设置 alias 以提高效率 ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql=<span class="string">'/usr/local/mysql/bin/mysql -u root -p'</span></span><br></pre></td></tr></table></figure>
+<p><del>接下来会有更多深入学习</del><br><img src="http://7xku3r.com1.z0.glb.clouddn.com/myclimycli.gif" class="img-center"></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Database/">Database</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/MySQL/">MySQL</a><a href="/tags/Yosemite/">Yosemite</a><a href="/tags/mycli/">mycli</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="blog.bruceleo1969.xyz/2015/8/5/db/" data-title="MySQL on Yosemite With mycli | Slave Yourself" data-tsina="BruceLEO1969" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/8/1/81/"  title="Sorrow">
+ <strong>下一篇：</strong><br/> 
+ <span>Sorrow
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mycli"><span class="toc-number">1.</span> <span class="toc-text">mycli</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-number">2.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#root_口令非常规设置"><span class="toc-number">2.1.</span> <span class="toc-text">root 口令非常规设置</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Database/" title="Database">Database<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/daily/" title="daily">daily<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/something-bad/" title="something_bad">something_bad<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MySQL/" title="MySQL">MySQL<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mycli/" title="mycli">mycli<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Yosemite/" title="Yosemite">Yosemite<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> This is the General in Wild. <br/>
+			Yes , it is , i lived by faith.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/BruceLEO1969" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/BruceLEO1969" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/BruceLEO1969" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/+BruceLEO1969/posts?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="General in Wild">General in Wild</a>
+		
+		
+		</p>
+		<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','72RNrRpYxisktDMMUcPS','2.0.0');
+</script>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+
+  </body>
+</html>
