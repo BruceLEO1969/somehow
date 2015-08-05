@@ -5,7 +5,7 @@
   <subtitle><![CDATA[The mind plays shameful tricks，when we want something too much.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="blog.bruceleo1969.xyz//"/>
-  <updated>2015-08-05T07:00:00.000Z</updated>
+  <updated>2015-08-05T07:06:06.000Z</updated>
   <id>blog.bruceleo1969.xyz//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="blog.bruceleo1969.xyz/2015/8/5/db/"/>
     <id>blog.bruceleo1969.xyz/2015/8/5/db/</id>
     <published>2015-08-05T05:40:35.000Z</published>
-    <updated>2015-08-05T07:00:00.000Z</updated>
+    <updated>2015-08-05T07:06:06.000Z</updated>
     <content type="html"><![CDATA[<p>mycli 出现以前 ，我一直觉得 ：</p>
 <blockquote>
 <p>MySQL CLI is for animal</p>
@@ -32,10 +32,10 @@
 <h2 id="MySQL">MySQL</h2><p><a href="ttps://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">官网</a> 下载好安装文件装上去过程是很常规的没什么好说 ，以我最近负无穷大的人品值都没有出问题 ，可见这是不可能出问题的步骤 &gt;_&lt; !</p>
 <p>装完第一件事当然是先给启动命令来个 alias ：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql=<span class="string">'/usr/local/mysql/bin/mysql'</span></span><br></pre></td></tr></table></figure>
-<p>设备里启动 MySQL Server 之后发现 <code>root</code> 并无法登录 MySQL ，网上都说 <code>root</code> 初始是无密码 ，试验之后 ，得到的结果是 ：</p>
+<p>启动 MySQL Server 之后发现 <code>root</code> 并无法登录 MySQL ，网上都说 <code>root</code> 初始是无密码 ，试验之后 ，得到的结果是 ：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access denied <span class="keyword">for</span> user <span class="string">''</span>@<span class="string">'localhost'</span>to database</span><br></pre></td></tr></table></figure>
 <p>无密码可登录的是 <code>mysql</code> 用户 ，登录进去看不见 MySQL 数据库 ，也没有权限给 <code>root</code> 修改密码 ，还是用其他方法设置好 <code>root</code> 密码再说吧 。</p>
-<h3 id="root_口令非常规设置">root 口令非常规设置</h3><ul>
+<h2 id="root_口令非常规设置">root 口令非常规设置</h2><ul>
 <li>首先关闭 MySQL ；</li>
 <li>再以 safe 模式启动 MySQL ；</li>
 </ul>
