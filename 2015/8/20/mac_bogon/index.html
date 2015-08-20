@@ -4,22 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Slave Yourself</title>
+    <title>Mac bogon hostname fixed | Slave Yourself</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="General in Wild">
     
 
     
-    <meta name="description" content="I lived by faith">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Slave Yourself">
-<meta property="og:url" content="blog.bruceleo1969.xyz/index.html">
+    <meta name="description" content="Mac 终端里恶心的 bogon 及解决方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac bogon hostname fixed">
+<meta property="og:url" content="blog.bruceleo1969.xyz/2015/8/20/mac_bogon/index.html">
 <meta property="og:site_name" content="Slave Yourself">
-<meta property="og:description" content="I lived by faith">
+<meta property="og:description" content="Mac 终端里恶心的 bogon 及解决方法">
+<meta property="og:image" content="http://7xku3r.com1.z0.glb.clouddn.com/15-8-20/88243277.jpg">
+<meta property="og:updated_time" content="2015-08-20T15:22:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Slave Yourself">
-<meta name="twitter:description" content="I lived by faith">
+<meta name="twitter:title" content="Mac bogon hostname fixed">
+<meta name="twitter:description" content="Mac 终端里恶心的 bogon 及解决方法">
 <meta name="twitter:creator" content="@BruceLEO1969">
 <link rel="publisher" href="+BruceLEO1969/posts">
 
@@ -74,12 +76,24 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
+      <div id="main" class="photo" itemscope itemprop="blogPost">
+  
+    <div class="gallery">
+  <div class="photoset">
     
-    <article class="post-expand photo" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      
+        <img src="http://7xku3r.com1.z0.glb.clouddn.com/15-8-20/88243277.jpg">
+      
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2015/8/20/mac_bogon/" title="Mac bogon hostname fixed" itemprop="url">Mac bogon hostname fixed</a>
@@ -93,18 +107,25 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <p>Mac 终端里恶心的 bogon 及解决方法<br><img src="http://7xku3r.com1.z0.glb.clouddn.com/15-8-20/529899.jpg" class="img-topic" /></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/8/20/mac_bogon/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bogon_由来"><span class="toc-number">1.</span> <span class="toc-text">bogon 由来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a></li></ol>
+		
+		</div>
+		
+		<p>Mac 终端里恶心的 bogon 及解决方法<br><img src="http://7xku3r.com1.z0.glb.clouddn.com/15-8-20/529899.jpg" class="img-topic"></p>
+<a id="more"></a>
+<h2 id="bogon_由来">bogon 由来</h2><p>Mac Terminal 计算机名有时候会错误的显示成 bogon . 这是因为终端会先向 DNS 请求查询当前 IP 的反向域名解析的结果 ，如果查询不到再显示我们设置的计算机名 。而由于我们的 DNS 错误地将保留地址反向的 NS 查询结果返回了 bogon . 其中 bogon 本应该用来指虚假的 IP 地址 ，而非保留 IP 地址 。因此就出现了会时不时地打印 bogon 这种奇怪名字作为计算机名的现象 。</p>
+<h2 id="解决方法">解决方法</h2><p>运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo hostname your-desired-host-name</span><br><span class="line">sudo scutil --set LocalHostName $(hostname)</span><br><span class="line">sudo scutil --set HostName $(hostname)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xku3r.com1.z0.glb.clouddn.com/15-8-20/529899.jpg
+" class="img-center"></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
@@ -122,338 +143,43 @@
 
 
 
-
-<div class="comments-count">
+	<div class="article-share" id="share">
 	
-</div>
+	  <div data-url="blog.bruceleo1969.xyz/2015/8/20/mac_bogon/" data-title="Mac bogon hostname fixed | Slave Yourself" data-tsina="BruceLEO1969" class="share clearfix">
+	  </div>
+	
+	</div>
+
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand photo" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/8/10/lara/" title="Lara the Nymph" itemprop="url">Lara the Nymph</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/+BruceLEO1969/posts?rel=author" title="General in Wild" target="_blank" itemprop="author">General in Wild</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-10T12:22:06.000Z" itemprop="datePublished"> Published 2015-08-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="http://7xku3r.com1.z0.glb.clouddn.com/15-8-10/80576558.jpg" class="img-topic" /></p>
-<p>Tomb Raider 9 还是第一款我玩到基本通关的游戏 ，以前一直没玩游戏的耐心 ，这次找 mac 游戏试机 ，意外的发现 Tomb Raider 9 竟然有 mac 版本 ，没想到竟也意外的喜欢上了这游戏 ，仿如华丽邂逅 。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/8/10/lara/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Game/">Game</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Game/">Game</a><a href="/tags/Lara/">Lara</a><a href="/tags/Nymph/">Nymph</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/8/10/lara/"  title="Lara the Nymph">
+ <strong>下一篇：</strong><br/> 
+ <span>Lara the Nymph
+</span>
+</a>
 </div>
 
-</footer>
+</nav>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand photo" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/8/7/riario/" title="You Lost Touch" itemprop="url">You Lost Touch</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/+BruceLEO1969/posts?rel=author" title="General in Wild" target="_blank" itemprop="author">General in Wild</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-07T04:39:03.000Z" itemprop="datePublished"> Published 2015-08-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="http://7xku3r.com1.z0.glb.clouddn.com/15-8-7/92666187.jpg" class="img-topic" /></p>
-<p>I sense some defeat .</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/8/7/riario/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Daily/">Daily</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/defeat/">defeat</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
 	
-</div>
 
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand photo" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/8/5/Mac/" title="OSX Configration" itemprop="url">OSX Configration</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/+BruceLEO1969/posts?rel=author" title="General in Wild" target="_blank" itemprop="author">General in Wild</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-05T10:40:40.000Z" itemprop="datePublished"> Published 2015-08-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="http://7xku3r.com1.z0.glb.clouddn.com/15-8-5/97347738.jpg" class="img-topic"></p>
-<p>Personalized Settings for my mac .</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/8/5/Mac/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Mac/">Mac</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Mac/">Mac</a><a href="/tags/OSX/">OSX</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/8/5/db/" title="MySQL on Yosemite With mycli" itemprop="url">MySQL on Yosemite With mycli</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/+BruceLEO1969/posts?rel=author" title="General in Wild" target="_blank" itemprop="author">General in Wild</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-05T05:40:35.000Z" itemprop="datePublished"> Published 2015-08-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="http://7xku3r.com1.z0.glb.clouddn.com/MySQLditch-mysql.jpg" class="img-topic" /></p>
-<p>mycli 出现以前 ，我一直觉得 ：</p>
-<blockquote>
-<p>MySQL CLI is for animal</p>
-</blockquote>
-<p>是的 ，那玩意太不智能了 ，没有高亮不说 ， 连最基本的自动补全也是能省就省 ，真的大丈夫 ？！</p>
-<p>这也成了我抗拒学数据库的最大原因 （ 逃 …</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/8/5/db/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Database/">Database</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/MySQL/">MySQL</a><a href="/tags/Yosemite/">Yosemite</a><a href="/tags/mycli/">mycli</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/8/1/81/" title="Sorrow" itemprop="url">Sorrow</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="https://plus.google.com/+BruceLEO1969/posts?rel=author" title="General in Wild" target="_blank" itemprop="author">General in Wild</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-01T14:02:19.000Z" itemprop="datePublished"> Published 2015-08-01</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="http://7xku3r.com1.z0.glb.clouddn.com/sorrowsorrow-clipart-sorrow-md.png" class="img-topic" /></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/8/1/81/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Daily/">Daily</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/something-bad/">something_bad</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bogon_由来"><span class="toc-number">1.</span> <span class="toc-text">bogon 由来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -643,6 +369,11 @@ $(document).ready(function(){
     o.css("top",Math.max(80,260-$(this).scrollTop()));
   });
   
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
   $(window).resize(function(){
     getSize(); 
     if (myWidth >= 1024) {
@@ -651,12 +382,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -718,4 +526,4 @@ $(document).ready(function(){
 
 
   </body>
- </html>
+</html>
